@@ -1,0 +1,129 @@
+body {
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    line-height: 150%;
+    background-color: antiquewhite;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+h1 {    
+    font-family: 'Oxanium', 'Sawarabi Gothic', sans-serif;
+    font-size: 2.1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+.container-fluid {
+    padding: 0;
+    margin: 0;
+}
+.container-lg {
+    padding: 0;
+}
+
+.col-sm-12 {
+    padding: 0;
+}
+
+#wrapper {
+    /* border: lightgray;
+    border-radius: .2em;
+    border-style: solid; */
+    /* border-width: 1px; */
+    /* background-color: rgb(255, 255, 255); */
+    background-color: transparent;
+    margin-bottom: 5em;
+}
+.row {
+    margin: 1rem 0 1rem 0;
+    padding: 0;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    /* border-bottom: 2px solid darkcyan; */
+    background-color: rgb(255, 255, 255);
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #343a40;
+    text-align: center;
+    margin-top: 1.5em;
+    font-size: 15px;
+    padding: 15px;
+    margin: 0;
+    color: white;
+}
+
+/* all navbar stuff */
+header {
+    margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+nav img {
+    width: 5em;
+}
+.navbar {
+    /* this moves the nav links to the right for some reason */
+    justify-content: space-between;
+    padding-top: unset;
+    padding-bottom: unset;
+}
+.mobile {
+    /* This class is for the mobile version of the navbar. Set not to display
+    on desktop or landscape-oriented phones */
+    display: none;
+}    
+.navbar-brand {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.language-button {
+    margin-left: 1em;
+    font-size: 1em;
+}
+/* end navbar */
+
+/* Specific to this page */
+#currentDayDiv {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: relative;
+    width: auto;
+    margin-right: -2rem;
+    margin-left: -2rem;
+}
+.row div {
+    margin: 1rem 0 1rem 0;
+}
+
+.jumbotron {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.editorIcon {
+    background-color: mediumaquamarine;
+    margin: unset !important;
+    padding: 1rem 0 1rem 0;
+    border-radius: 5px
+}
+.timeDisplay {
+    text-align: center;
+    background-color: skyblue;
+    margin: unset !important;
+    padding: 1rem 0 1rem 0;
+    border-radius: 5px
+}
+
+i {
+    line-height: unset !important;
+    height: 1rem;
+}
