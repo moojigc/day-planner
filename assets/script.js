@@ -15,13 +15,10 @@ function printCurrentTime() {
 }
 printCurrentTime();
 
-// Generate the rows dynamically
+// Generate the rows dynamically and has the option to add a parameter for appending or prepending the blocks
 function appendTimeBlocks(newTimeBlocks, appendOrPrepend) {
     var hours = [];
-    // if (newTimeBlocks !== undefined) {
-        // hours = [];
-        hours.push(newTimeBlocks); //allows user to add more time blocks if they want
-    // }
+    hours.push(newTimeBlocks); //allows user to add more time blocks if they want
     var timeBlockDiv;
     var hourDisplay;
     var plansDisplay;
@@ -150,13 +147,15 @@ function editUserPlans() {
     })
 }
 
-// Calling functions
+// Creates the default time blocks
+addTimeBlocks(["9","10","11","12","13","14","15","16","17"]);
+
+// Adding timeBlock functions
 function addTimeBlocks(newHours) {
     newHours.forEach(hour => {
         appendTimeBlocks(hour);
     })
 }
-addTimeBlocks(["9","10","11","12","13","14","15","16","17"]);
 
 var newTimeBlockAfternoon = 17;
 $("#addTimeBlockBtnAfternoon").on("click", function() {

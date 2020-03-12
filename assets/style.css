@@ -35,6 +35,7 @@ h1 {
     /* border-width: 1px; */
     /* background-color: rgb(255, 255, 255); */
     background-color: transparent;
+    margin-bottom: 2rem;
 }
 .row {
     margin: 1rem 0 1rem 0;
@@ -47,12 +48,18 @@ h1 {
 
 /* Footer */
 footer {
-    position: fixed;
+    /* position: fixed; */
     bottom: 0px;
     width: 100%;
     background-color: #343a40;
     text-align: center;
     margin-top: 1.5em;
+    font-size: 15px;
+    padding: 15px;
+    margin: 0;
+    color: white;
+}
+#footer-name {
     font-size: 15px;
     padding: 15px;
     margin: 0;
@@ -98,13 +105,14 @@ nav img {
     width: auto;
     margin-right: -2rem;
     margin-left: -2rem;
+    margin-bottom: -2rem;
 }
 
 .jumbotron {
     text-align: center;
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-bottom: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .editorIcon {
@@ -133,25 +141,30 @@ nav img {
     color: white;
     background-color: #9a9696;
 }
-}
 
 i {
     line-height: unset !important;
     font-size: 2rem;
     border-radius: unset;
 }
-#addTimeBlockBtnAfternoon, #addTimeBlockBtnMorning {
+.fa-plus-circle {
     font-size: 5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
-#addTimeBlockBtnAfternoon p, #addTimeBlockBtnMorning p {
+.fa-plus-circle p {
     font-family: 'Roboto', 'Noto Sans JP', sans-serif;
     font-size: 1rem;
     margin: unset;
     margin-left: 5px;
+}
+#addTimeBlockBtnAfternoon {
+    margin-bottom: 10rem;
+}
+#editPlansBtn {
+    margin-top: 1rem;
 }
 
 .earlier {
@@ -159,4 +172,11 @@ i {
 }
 .later {
     background-color: lightgreen;
+}
+
+.display-none {
+    display: none;
+}
+.display-block {
+    display: block;
 }

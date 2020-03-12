@@ -76,6 +76,12 @@
     .vertical-text-align {
         line-height: unset !important;
     }
+    .modal-content .btn {
+        font-size: 1.5rem;
+    }
+    i {
+        font-size: 3rem;
+    }
 
 
 }
