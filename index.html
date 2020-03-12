@@ -71,19 +71,20 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Today's agenda:</h5>
+          <h4 class="modal-title">Today's agenda:</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <textarea id="plansDescription" class="form-control" placeholder="What are your plans?" value="">
-          </textarea>
-          <button id="editPlansBtn" class="btn btn-info">Edit</button>
+			<p id="plansDescriptionStatic"></p>
+			<textarea id="plansEditBox" class="form-control" placeholder="What are your plans?" value="">
+			</textarea>
+			<button id="editPlansBtn" class="btn btn-info">Edit</button>
         </div>
         <div class="modal-footer">
-          <button id="closeWithoutSaveBtn" type="button" class="btn btn-danger" data-dismiss="modal">Close without saving</button>
-          <button id="saveAndCloseBtn" type="button" class="btn btn-primary">Save & close</button>
+          <button id="closeBtn" type="button" class="btn btn-danger" data-dismiss="modal">Close without saving</button>
+          <button id="saveBtn" type="button" class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>

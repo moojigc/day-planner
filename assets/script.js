@@ -2,23 +2,31 @@ $(document).ready(function() {
 // declare global variables
 var currentDay = moment().format("MMMM Do, YYYY");
 var currentDayDiv = $("#currentDayDiv");
-var currentTime = moment().format("MMMM Do, YYYY, h:mm a");
-currentDayDiv.html(currentTime);
+var currentTime = {
+    formattedTime: moment().format("MMMM Do, YYYY, h:mm a"),
+    rawTime: moment(),
+}
+currentDayDiv.html(currentTime.formattedTime);
 wrapper = $("#wrapper");
 
 // Function to update the time every second
 function printCurrentTime() {
     interval = setInterval(function() {
-        currentTime = moment().format("MMMM Do, YYYY, h:mm a");
-        currentDayDiv.text(currentTime);
+        currentTime = {
+            formattedTime: moment().format("MMMM Do, YYYY, h:mm a"),
+            rawTime: moment(),
+        }
+        currentDayDiv.text(currentTime.formattedTime);
     }, 1000);
 }
 printCurrentTime();
 
 // Generate the rows dynamically and has the option to add a parameter for appending or prepending the blocks
-function appendTimeBlocks(newTimeBlocks, appendOrPrepend) {
+function appendTimeBlocks(createOrEdit, newTimeBlocks, appendOrPrepend) {
     var hours = [];
-    hours.push(newTimeBlocks); //allows user to add more time blocks if they want
+    // if (newTimeBlocks === "add") {
+        hours.push(newTimeBlocks); //allows user to add more time blocks if they want
+    // }
     var timeBlockDiv;
     var hourDisplay;
     var plansDisplay;
@@ -31,147 +39,161 @@ function appendTimeBlocks(newTimeBlocks, appendOrPrepend) {
         plansDisplay = $("<div>").addClass("plansDisplay col-md-10");
         editorIcon = $("<button>").addClass("editorIcon btn col-md-1");
         editorIcon.attr("data-toggle", "modal"); editorIcon.attr("data-target", "#plansEditorModal");
-        calIcon = $("<i>").addClass("fas fa-calendar-plus");    
+        calIcon = $("<i>").addClass("fas fa-calendar-plus");   
+        editorIcon.append(calIcon); 
     }
+    if (createOrEdit === "edit") { // Edit plans without creating new blocks
+        hours.forEach(hour => {
+            editUserPlans(hour);
+        })
+    } else if (createOrEdit === "create") { // Creates blocks
+        hours.forEach(hour => {
+            function isItEarlierOrLater() { // When I have more time, I'm going to try adding a gradient instead of just 3 solid colors
+                // var transparency; 
+                // if (moment(hour, "HH").isAfter(currentTime.rawTime, "hour")) {
+                //     transparency = Math.pow(hour, (1/2))
+                // }
+                // plansDisplay.attr("style", "background-color: rgba(255, 98, 98," + transparency + ");")
+                // console.log(transparency);
 
-    hours.forEach(hour => {
-        function isItEarlierOrLater() {
-            var currentRealHour = moment("12", "HH"); //Saves current hour (in 24hr format) as an integer
-            // var currentRealHour = 12;
-            // var currentHour = currentRealHour + beforeAfter;
-
-            if (moment(hour, "HH").isAfter(currentRealHour, "hour")) {
-                plansDisplay.attr("style", "background-color: #ff7272");
-            } else if (moment(hour, "HH").isBefore(currentRealHour, "hour")) {
-                plansDisplay.attr("style", "background-color: #35b9ba");
+                // currentTime.rawTime = moment("12", "HH") // for testing colors
+                if (moment(hour, "HH").isAfter(currentTime.rawTime, "hour")) {
+                    plansDisplay.attr("style", "background-color: #ff7272");
+                } else if (moment(hour, "HH").isBefore(currentTime.rawTime, "hour")) {
+                    plansDisplay.attr("style", "background-color: #9a9696;");
+                }
             }
-
-            // Gradient time!
-            // if (currentHour - parseInt(hour) >= 9) {
-            //     plansDisplay.attr("style", "background-color: #ffba26");
-            // } 
-            // else if (currentHour - parseInt(hour) === 8) {
-            //     plansDisplay.attr("style", "background-color: #f3ba2f");
-            // } 
-            // else if (currentHour - parseInt(hour) === 7) {
-            //     plansDisplay.attr("style", "background-color: #e7ba38");
-            // } 
-            // else if (currentHour - parseInt(hour) === 6) {
-            //     plansDisplay.attr("style", "background-color: #d1ba48");
-            // } 
-            // else if (currentHour - parseInt(hour) === 5) {
-            //     plansDisplay.attr("style", "background-color: #b4ba5d");
-            // } 
-            // else if (currentHour - parseInt(hour) === 4) {
-            //     plansDisplay.attr("style", "background-color: #82ba82");
-            // } 
-            // else if (currentHour - parseInt(hour) === 3) {
-            //     plansDisplay.attr("style", "background-color: #67b995");
-            // } 
-            // else if (currentHour - parseInt(hour) === 2) {
-            //     plansDisplay.attr("style", "background-color: #4fb9a7");
-            // } 
-            // else if (currentHour - parseInt(hour) === 1) {
-            //     plansDisplay.attr("style", "background-color: #43b9b0");
-            // } 
-            // else if (currentHour === parseInt(hour)) {
-            //     plansDisplay.attr("style", " background: rgb(53,185,186); background: linear-gradient(0deg, rgba(53,185,186,1) 0%, rgba(255,186,38,1) 100%); ");
-            // } 
-        }
-        if (hour < 13) {
+            
             createATimeBlock();
-
-            hourDisplay.text(hour + "AM");
-            editorIcon.append(calIcon);
             // For use within the editor modal
-            editorIcon.attr("data-hour", moment(hour, "HH"));
-
+            editorIcon.attr("data-hour", hour);
             timeBlockDiv.append(hourDisplay, plansDisplay, editorIcon);
-            plansDisplay.text(moment(hour, "HH"));
 
+            var savedPlansForThisHour = localStorage.getItem("UserPlansFor" + hour);
+            plansDisplay.text(savedPlansForThisHour);
+
+            // Appends or prepends depending on if parameter is passed in
             if (appendOrPrepend == "prepend") {
                 wrapper.prepend(timeBlockDiv);
             } else {
                 wrapper.append(timeBlockDiv);
             }
-            // console.log(hour + " AM");
-            isItEarlierOrLater();
-
-        } else {
-            createATimeBlock();
-        
-            hourDisplay.text(parseInt(hour) -12 + "PM");
-            editorIcon.append(calIcon);
-            // For use within the editor modal
-            editorIcon.attr("data-hour", moment(hour, "HH"));
-
-            timeBlockDiv.append(hourDisplay, plansDisplay, editorIcon);
-            plansDisplay.text(moment(hour, "HH"));
-
-            if (appendOrPrepend == "prepend") {
-                wrapper.prepend(timeBlockDiv);
+            
+            if (hour < 12) {
+                hourDisplay.text(hour + " AM");
+            } else if (hour === 12) {  
+                hourDisplay.text(hour + " PM");
             } else {
-                wrapper.append(timeBlockDiv);
+                hourDisplay.text(parseInt(hour)-12 + " PM");
             }
-            // console.log(parseInt(hour) - 12 + " PM");
             isItEarlierOrLater();
-        }
 
-        console.log(editorIcon.data("hour"));
-        editUserPlans();
-    });
+        });
+    }   
 }
 // console.log(timeBlockDiv.data("hour"));
 
-// To edit the plans
-function editUserPlans() {
+
+
+// To edit the plan hour by hour
+function editUserPlans(hour) {
     $('#plansEditorModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var hour = button.data('hour') // Extract info from data-* attributes
-        if (button.parent().contents(".plansDisplay")[0].childNodes[0].data === undefined) {
-            return;
-        } else {
-            var thisPlanDisplay = button.parent().contents(".plansDisplay")[0].childNodes[0].data;
+
+        // Hide and display elements
+        console.log("you clicked on" + hour);
+        $("#editPlansBtn").attr("class", "btn btn-info");
+        $("#closeBtn").text("Close");
+        $("#plansEditBox").addClass("display-none"); $("#saveBtn").addClass("display-none");
+
+        var savedPlansForThisHour = localStorage.getItem("UserPlansFor" + hour);
+        if (savedPlansForThisHour !== null) { // Grab the text from the current display
+            $("#plansDescriptionStatic").text(savedPlansForThisHour);
+            button.parent().children(".plansDisplay").text(savedPlansForThisHour);
         }
-        console.log(thisPlanDisplay);
-        console.log(hour);
-        
+
         // Editing the modal content
         var modal = $(this);
-        if (parseInt(hour)>12) {
-        modal.find('.modal-title').text(hour + "PM");
-        } else {
-            modal.find('.modal-title').text(hour + "AM");
+        console.log(modal.find('.modal-title'));
+        if (hour > 12) {
+            modal.find('.modal-title').text(("Today's agenda for " + (hour-12) + " PM"));
+        } else if (hour === 12) {
+            modal.find('.modal-title').text(("Today's agenda for " + hour + " PM"));
         }
-        $("#plansDescription").text(thisPlanDisplay);
+        else {
+            modal.find('.modal-title').text(("Today's agenda for " + hour + " AM"));
+        }
+        
+        $("#saveBtn").on("click", function() {
+            var temporaryPlansForThisHour = $("#plansEditBox").val();
+            if (temporaryPlansForThisHour !== null) {
+                $("#plansDescriptionStatic").text(temporaryPlansForThisHour);
+                button.parent().children(".plansDisplay").text(temporaryPlansForThisHour);
+            }
+        })
+
+
+        // Save user input
+        // need to connect textarea to plansdisplay, then save textarea to localstorage, then display localstorage to plansdisplay & plansdescriptionstatic
     })
 }
 
-// Creates the default time blocks
-addTimeBlocks(["9","10","11","12","13","14","15","16","17"]);
-
+// eventListener on editplansbtn
+function getUserClicks() {
+    var thisBlocksHour;
+    function getCurrentBlockData() {
+        thisBlocksHour = $(this).data("hour");
+        console.log(thisBlocksHour);
+        // Call editor function and pass it thisBlocksHour
+        editUserPlans(thisBlocksHour);
+    }
+    function saveToStorage() {
+        localStorage.setItem("UserPlansFor" + thisBlocksHour, $("#plansEditBox").val())
+    }
+    $(".editorIcon").on("click", getCurrentBlockData); // Gets the hour from the button you click on
+    $("#editPlansBtn").on("click", function() {
+        console.log("editPlansBtn returns" + thisBlocksHour);
+        $("#plansEditBox").removeClass("display-none");
+        $("#editPlansBtn").addClass("display-none");
+        $("#saveBtn").removeClass("display-none");
+        $("#closeBtn").text("Close");  
+        $("#saveBtn").on("click", saveToStorage);     
+    })
+    $("#plansEditBox").keypress(function() {
+        $("#saveBtn").text("Save and close");
+        $("#closeBtn").text("Close without saving");  
+        $("#saveBtn").on("click", function() {
+            $("#closeBtn").click();
+        });
+    })
+}
 // Adding timeBlock functions
 function addTimeBlocks(newHours) {
-    newHours.forEach(hour => {
-        appendTimeBlocks(hour);
+    newHours.forEach(newHour => {
+        appendTimeBlocks("create", newHour);
     })
 }
 
+// Append new afternoon blocks
 var newTimeBlockAfternoon = 17;
 $("#addTimeBlockBtnAfternoon").on("click", function() {
     if (newTimeBlockAfternoon !== null && newTimeBlockAfternoon < 23) {
         newTimeBlockAfternoon++;
-        appendTimeBlocks(newTimeBlockAfternoon);
+        appendTimeBlocks("create", newTimeBlockAfternoon);
     }
 })
+// Prepend new morning blocks
 var newTimeBlockMorning = 9;
 $("#addTimeBlockBtnMorning").on("click", function() {
-    if (newTimeBlockMorning !== null && newTimeBlockMorning > 1) {
+    if (newTimeBlockMorning !== null && newTimeBlockMorning > 0) {
         newTimeBlockMorning--;
-        appendTimeBlocks(newTimeBlockMorning, "prepend");
+        appendTimeBlocks("create", newTimeBlockMorning, "prepend");
     }
 })
 
+// Call functions
+addTimeBlocks([9,10,11,12,13,14,15,16,17]); // Creates the default time blocks
+getUserClicks();
 
 // end of script
 });

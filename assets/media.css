@@ -76,12 +76,18 @@
     .vertical-text-align {
         line-height: unset !important;
     }
+    .modal-dialog {
+        max-width: unset;
+        width: auto;
+        font-size: 2rem;
+    }
     .modal-content .btn {
         font-size: 1.5rem;
     }
     i {
         font-size: 3rem;
     }
+
 
 
 }
