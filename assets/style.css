@@ -35,7 +35,6 @@ h1 {
     /* border-width: 1px; */
     /* background-color: rgb(255, 255, 255); */
     background-color: transparent;
-    margin-bottom: 5em;
 }
 .row {
     margin: 1rem 0 1rem 0;
@@ -63,7 +62,7 @@ footer {
 /* all navbar stuff */
 header {
     margin-bottom: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
 }
 nav img {
     width: 5em;
@@ -100,30 +99,64 @@ nav img {
     margin-right: -2rem;
     margin-left: -2rem;
 }
-.row div {
-    margin: 1rem 0 1rem 0;
-}
 
 .jumbotron {
     text-align: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    margin-bottom: 1rem;
 }
+
 .editorIcon {
     background-color: mediumaquamarine;
     margin: unset !important;
     padding: 1rem 0 1rem 0;
-    border-radius: 5px
+    border-radius: unset;
 }
-.timeDisplay {
-    text-align: center;
+.hourDisplay {
     background-color: skyblue;
-    margin: unset !important;
-    padding: 1rem 0 1rem 0;
-    border-radius: 5px
+    /* border-radius: 5px; */
+    margin: 0;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.plansDisplay {
+    margin: 0;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: -1px 2px 10px darkslategray;
+    /* -webkit-text-stroke: 1px black; */
+    color: white;
+    background-color: #9a9696;
+}
 }
 
 i {
     line-height: unset !important;
-    height: 1rem;
+    font-size: 2rem;
+    border-radius: unset;
+}
+#addTimeBlockBtnAfternoon, #addTimeBlockBtnMorning {
+    font-size: 5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+#addTimeBlockBtnAfternoon p, #addTimeBlockBtnMorning p {
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+    font-size: 1rem;
+    margin: unset;
+    margin-left: 5px;
+}
+
+.earlier {
+    background-color: pink;
+}
+.later {
+    background-color: lightgreen;
 }

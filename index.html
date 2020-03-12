@@ -65,24 +65,42 @@
                 </ul>
               </div>
         </div>
-	</header>
-	
+  </header>
+  
+<div class="modal fade" id="plansEditorModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Today's agenda:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea id="plansDescription" class="form-control" placeholder="What are your plans?" value="">
+          </textarea>
+          <button class="btn btn-sm btn-info">Edit</button>
+        </div>
+        <div class="modal-footer">
+          <button id="closeWithoutSaveBtn" type="button" class="btn btn-danger" data-dismiss="modal">Close without saving</button>
+          <button id="saveAndCloseBtn" type="button" class="btn btn-primary">Save & close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 	<div class="jumbotron">
 		<h1 class="display-3">A Work Day Scheduler</h1>
 		<p class="lead">A simple calendar app for scheduling your work day.</p>
 		<p id="currentDayDiv" class="lead btn btn-block btn-outline-info" disabled></p>
 	</div>
+	<i id="addTimeBlockBtnMorning" class="fas fa-plus-circle"><p>Add Morning Block</p></i>
+	
+    <main id="wrapper" class="container-lg">        
+    </main>
 
-    <main id="wrapper" class="container-lg">
-		<div class="row shadow">
-			<div class="timeDisplay col-md-1">9 AM</div>
-			<div class="plansDisplay col-md-10">Nothing</div>
-			<button class="editorIcon btn col-md-1">
-				<i class="fas fa-calendar-plus"></i>
-			</button>
-    </div>
-        
-	</main>
+    <i id="addTimeBlockBtnAfternoon" class="fas fa-plus-circle"><p>Add Afternoon Block</p></i>
+    
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="assets/script.js" type="text/javascript"></script>
 
