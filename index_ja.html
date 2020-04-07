@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -31,13 +31,13 @@
             <div id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="https://moojigc.github.io/index.html">About</span></a>
+                  <a class="nav-link" href="https://moojigc.github.io/index.html">自伝</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="https://moojigc.github.io/portfolio.html">Portfolio</a>
+                  <a class="nav-link" href="https://moojigc.github.io/portfolio.html">ポートフォリオ</a>
                 </li>
-                <a href="index_ja.html" class="btn btn-primary language-button">
-                    日本語
+                <a href="index.html" class="btn btn-primary language-button">
+                    English
                 </a>
               </ul>
             </div>
@@ -45,18 +45,18 @@
         <!-- Mobile navbar -->
         <div class="navbar navbar-expand-lg navbar-light bg-light mobile">
             <div id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="https://moojigc.github.io/index.html">About</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="https://moojigc.github.io/portfolio.html">Portfolio</a>
-                  </li>
-                  <a href="index_ja.html" class="btn btn-primary language-button">
-                      日本語
-                  </a>
-                  
-                </ul>
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="https://moojigc.github.io/index.html">自伝</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://moojigc.github.io/portfolio.html">ポートフォリオ</a>
+					</li>
+					<a href="index.html" class="btn btn-primary language-button">
+						English
+					</a>
+				
+				</ul>
               </div>
         </div>
 	</header>
@@ -71,33 +71,33 @@
 			</div>
 			<div class="row" style="position: relative; background: whitesmoke; border-radius: 0.5rem; box-shadow: 0px 0px 10px 1px darkgray;">
 				<div id="plansDescriptionStatic">No plans for right now!</div>
-				<textarea id="plansEditBox" class="form-control display-none" placeholder="What are your plans?" value="">
+				<textarea id="plansEditBox" class="form-control display-none" placeholder="予定は何ですか？" value="">
 				</textarea>
 				<button class="btn" id="editPlansBtn">
 					<i class="fas fa-pencil-alt"></i>
 				</button>
 			</div>
 			<div class="row" style="margin: 1rem 0 0 0; justify-content: end;">
-				<button type="close" id="closeBtn" class="btn btn-dark">Close</button>
-				<button type="save" id="saveBtn" class="btn btn-success" style="margin-left: 1rem;">Save</button>
+				<button type="close" id="closeBtn" class="btn btn-dark">閉める</button>
+				<button type="save" id="saveBtn" class="btn btn-success" style="margin-left: 1rem;">セーヴ</button>
 			</div>
 		</div>
 	</div>
 
 	<div class="jumbotron">
-		<h1 class="display-3">YourWorkDay</h1>
-		<p class="lead">A simple calendar app for scheduling your work day.</p>
+		<h1 class="display-3">仕事の予定</h1>
+		<p class="lead">仕事の時間を計画作るためのアプリ</p>
 		<p id="currentDayDiv" class="lead btn btn-block btn-outline-info disabled" disabled></p>
 	</div>
-	<i id="addTimeBlockBtnMorning" class="fas fa-plus-circle"><p>Add Morning Block</p></i>
+	<i id="addTimeBlockBtnMorning" class="fas fa-plus-circle"><p>午前のブロックを付ける</p></i>
 	
     <main id="wrapper" class="container-lg">        
     </main>
 
-	<i id="addTimeBlockBtnAfternoon" class="fas fa-plus-circle"><p>Add Afternoon Block</p></i>
+	<i id="addTimeBlockBtnAfternoon" class="fas fa-plus-circle"><p>午後のブロックを付ける</p></i>
 
 	<footer class="container-fluid">
-        <p id="footer-name">© Munkhtsogt Battsogt 2020</p>
+        <p id="footer-name"><ruby>Ⓒ Munkhtsogt Battsogt 2020年<rt>ムンクツォクト・バッツォクト</rt></ruby></p>
     </footer>
     
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

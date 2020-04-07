@@ -7,25 +7,29 @@ const $closeBtn = $('#closeBtn');
 const $saveBtn = $('#saveBtn');
 const $plansEditBox = $('#plansEditBox');
 const $modalPlansDisplay = $('#plansDescriptionStatic');
-let currentTime = {
-    formattedTime: moment().format("MMMM Do, YYYY, h:mm a"),
+const currentTime = {
+    formattedTimeEN: moment().format('MMMM Do, YYYY, hh:mm a'),
+    formattedTimeJA: moment().format("YYYY年MM月DD日, HH:mm"),
     rawTime: moment(),
+    lang: function() {
+        if ($('html').attr('lang') === 'ja') {
+            return this.formattedTimeJA;
+        } else {
+            return this.formattedTimeEN;
+        }
+    }
 }
 
 $(document).ready(function() {
 // declare global variables
 const currentDayDiv = $("#currentDayDiv");
-currentDayDiv.html(currentTime.formattedTime);
+currentDayDiv.html(currentTime.lang());
 const wrapper = $("#wrapper");
 
 // Function to update the time every second
 function printCurrentTime() {
     interval = setInterval(function() {
-        currentTime = {
-            formattedTime: moment().format("MMMM Do, YYYY, h:mm a"),
-            rawTime: moment(),
-        }
-        currentDayDiv.text(currentTime.formattedTime);
+        currentDayDiv.text(currentTime.lang());
     }, 1000);
 }
 printCurrentTime();
