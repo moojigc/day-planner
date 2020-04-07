@@ -114,7 +114,7 @@ function appendTimeBlocks(createOrEdit, newTimeBlocks, appendOrPrepend) {
 function addTimeBlocks(newHours) {
     newHours.forEach(newHour => {
         appendTimeBlocks("create", newHour);
-    })
+    });
 }
 
 // Append new afternoon blocks
@@ -145,6 +145,7 @@ $(document).on("click", ".editorIcon", function() {
 });
 
 function save() {
+    console.trace('save func');
     let hour = lastBtnClicked.data('hour');
     const temporaryPlansForThisHour = $plansEditBox.val();
     if (temporaryPlansForThisHour !== null) {

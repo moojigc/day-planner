@@ -25,30 +25,6 @@ function editUserPlans(button) {
         $modalPlansDisplay.text(`No plans for ${formattedHour(hour)}.`);
     }
 
-    function save() {
-        const temporaryPlansForThisHour = $plansEditBox.val();
-        if (temporaryPlansForThisHour !== null) {
-
-            console.log(`Saving for ${formattedHour(hour)}.`);            
-            if (temporaryPlansForThisHour.split('').length < 50) {
-                $modalPlansDisplay.text(temporaryPlansForThisHour);
-                button.parent().children(".plansDisplay").text(temporaryPlansForThisHour);
-            } else {
-                let short = () => {
-                    let arr = temporaryPlansForThisHour.split('');
-                    arr.splice(50);
-                    return `${arr.join('')}...`
-                } 
-                console.log(short());
-                button.parent().children(".plansDisplay").text(short());
-            }
-        }
-    }
-    $(document).on('click', '#saveBtn', function() {
-        localStorage.setItem(hour, $plansEditBox.val())
-        save();
-    });
-
         // This ONLY changes the appearence of the modal upon clicking the EDIT button
     $("#editPlansBtn").on("click", function() {
         $plansEditBox.removeClass("display-none");
